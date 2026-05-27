@@ -48,4 +48,4 @@ def delete_book(book_id):
     return jsonify({"result": "Book deleted successfully"}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',debug=True)
