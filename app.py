@@ -2,6 +2,9 @@ from flask import Flask, jsonify, request, abort
 
 app = Flask(__name__)
 
+from prometheus_flask_exporter import PrometheusMetrics
+metrics = PrometheusMetrics(app)
+
 # In-memory database for demonstration purposes
 books = [
     {"id": 1, "title": "The Hobbit", "author": "J.R.R. Tolkien"},
