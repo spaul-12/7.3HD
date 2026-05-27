@@ -230,9 +230,9 @@ pipeline {
                 script {
                     echo " Starting monitoring stack"
                     sh """
-                        docker compose -f docker-compose.monitoring.yml up -d
+                        docker compose -f docker-compose.monitoring.yaml up -d
 
-                        sleep 20
+                        sleep 30
 
                         curl -sf http://localhost:9090/-/healthy \
                             && echo "✅ Prometheus healthy" \
