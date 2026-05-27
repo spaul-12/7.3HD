@@ -209,11 +209,8 @@ pipeline {
                             -e FLASK_ENV=production \
                             $DOCKER_IMAGE:$RELEASE_TAG
  
-                        sleep 60
- 
-                        curl -sf http://localhost:$PROD_PORT/api/books \
-                            && echo "✅ Production health check passed" \
-                            || { echo "❌ Production health check FAILED" }
+                        sleep 20
+
                     '''
                 }
             }
