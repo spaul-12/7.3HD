@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 10s
+ 
+scrape_configs:
+  - job_name: "flask-books-api"
+    static_configs:
+      - targets: ["host.docker.internal:5000"]   # prod container
+        labels:
+          env: "production"
+      - targets: ["host.docker.internal:5001"]   # staging container
+        labels:
+          env: "staging"
+ 

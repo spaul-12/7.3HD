@@ -1,3 +1,5 @@
 /env
 /__py*
 .coverage
+coverage.xml
+test-results.xml
