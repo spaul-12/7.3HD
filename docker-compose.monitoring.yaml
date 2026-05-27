@@ -5,6 +5,8 @@ services:
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
     ports:
