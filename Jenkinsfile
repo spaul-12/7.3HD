@@ -226,7 +226,7 @@ pipeline {
                 }
             }
         }
-        }
+        
 
         stage('Monitoring') {
             steps {
@@ -249,7 +249,7 @@ pipeline {
             }
         }
     }
-
+    
     post {
         success {
             echo """
