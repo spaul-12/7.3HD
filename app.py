@@ -5,6 +5,7 @@ app = Flask(__name__)
 from prometheus_flask_exporter import PrometheusMetrics
 metrics = PrometheusMetrics(app)
 
+
 # In-memory database for demonstration purposes
 books = [
     {"id": 1, "title": "The Hobbit", "author": "J.R.R. Tolkien"},
@@ -48,4 +49,4 @@ def delete_book(book_id):
     return jsonify({"result": "Book deleted successfully"}), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=True)
+    app.run(host='0.0.0.0')
