@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        // --- Project & Docker ---
         APP_NAME        = "flask-books-api"
         DOCKER_IMAGE    = "${APP_NAME}"
         DOCKER_TAG      = "${BUILD_NUMBER}"
@@ -114,7 +113,6 @@ pipeline {
                                 --output /output/trivy-report.json \
                                 ${DOCKER_IMAGE}:${DOCKER_TAG}
                     """
-                    // Print a count summary into the build log
                     sh """
                         if [ -f trivy-report.json ]; then
                             COUNT=\$(python3 -c \
@@ -156,15 +154,8 @@ pipeline {
                 }
             }
         }
-
-        // ─────────────────────────────────────────────────────────────────────
-        // STAGE 7 · RELEASE
-        // Tags image with a semantic version, creates a Git tag, promotes to prod.
-        // ─────────────────────────────────────────────────────────────────────
         stage('Release') {
             environment {
-                // Declared here so both single-quoted shell blocks and
-                // Groovy echo statements can access it consistently.
                 RELEASE_TAG = "v1.${BUILD_NUMBER}"
             }
             steps {
@@ -175,7 +166,7 @@ pipeline {
                         echo "✅ Docker image tagged: $DOCKER_IMAGE:$RELEASE_TAG"
                     '''
                     withCredentials([usernamePassword(
-                        credentialsId: 'github-pat',         // Jenkins credential ID
+                        credentialsId: 'github-pat',         
                         usernameVariable: 'GIT_USERNAME',
                         passwordVariable: 'GIT_TOKEN'
                     )]) {
